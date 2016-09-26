@@ -2,6 +2,7 @@ package pl.pawc.jokes;
 
 import pl.pawc.jokes.model.Joke;
 import pl.pawc.jokes.model.Comment;
+import pl.pawc.jokes.Database;
 
 class Main{
 	

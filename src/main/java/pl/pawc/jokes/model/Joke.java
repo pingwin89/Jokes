@@ -11,6 +11,9 @@ public class Joke{
 	private int likes;
 	private List<Comment> comments;
 
+	public Joke(){
+	}
+
 	public Joke(String content){
 		this.content = content;
 		date = new Date();
@@ -23,7 +26,31 @@ public class Joke{
 	}
 
 	public void addLike(){
-		like++;
+		likes++;
+	}
+
+	public void setContent(String content){
+		this.content = content;
+	}
+	
+	public void setDate(String date){
+		this.date = new Date(Long.parseLong(date));
+	}
+
+	public void setDate(Long date){
+		this.date = new Date(date);
+	}
+
+	public void setLikes(String likes){
+		this.likes = Integer.parseInt(likes);
+	}
+
+	public void setLikes(int likes){
+		this.likes = likes;
+	}
+
+	public void setComments(String line){
+		// todo
 	}
 
 }
