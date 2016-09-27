@@ -9,7 +9,7 @@ public class Joke{
 	private String content;
 	private Date date;
 	private int likes;
-	private List<Comment> comments;
+	private ArrayList<Comment> comments;
 
 	public Joke(){
 	}
@@ -65,6 +65,14 @@ public class Joke{
 
 	public int getLikes(){
 		return likes;
+	}
+
+	public Long getDate(){
+		return date.getTime();
+	}
+
+	public ArrayList<Comment> getComments(){
+		return comments;
 	}
 
 }

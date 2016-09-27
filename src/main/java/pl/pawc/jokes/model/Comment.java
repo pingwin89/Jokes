@@ -18,15 +18,15 @@ public class Comment{
 		this.text = text;
 	}
 
-	private String getAuthor(){
+	public String getAuthor(){
 		return author;
 	}
 
-	private Date getDate(){
-		return date;
+	public Long getDate(){
+		return date.getTime();
 	}
 
-	private String getText(){
+	public String getText(){
 		return text;
 	}
 
