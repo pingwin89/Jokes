@@ -49,8 +49,22 @@ public class Joke{
 		this.likes = likes;
 	}
 
+	// # rozdziela komenatrze 
+    // $ rozdziela dane wewnątrz komentarza
 	public void setComments(String line){
-		// todo
+		comments = new ArrayList<Comment>();
+		String[] data = line.split("#");
+		for(String record : data){
+			comments.add(new Comment(record.split("$")));
+		}	
+	}
+
+	public String getContent(){
+		return content;
+	}
+
+	public int getLikes(){
+		return likes;
 	}
 
 }

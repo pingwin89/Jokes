@@ -7,7 +7,8 @@ import pl.pawc.jokes.Database;
 class Main{
 	
 	public static void main(String args[]){
-		System.out.println("ok");
+		Database db = new Database(args[0]);
+		db.print();
 	}
 
 }

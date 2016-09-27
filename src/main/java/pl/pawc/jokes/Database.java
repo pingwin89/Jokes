@@ -48,4 +48,17 @@ public class Database{
 		return joke;
 	}
 
+	public void print(){
+		int i = 1;
+		for(Joke joke : jokes){
+			log(i+": "+joke.getContent());
+			log("Likes: "+joke.getLikes());
+			i++;
+		}
+	}
+
+	public void log(String info){
+		System.out.println(info);
+	}
+
 }
