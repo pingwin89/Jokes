@@ -4,6 +4,8 @@ import pl.pawc.jokes.model.Comment;
 import pl.pawc.jokes.model.Joke;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public class Util{
 	
@@ -79,6 +81,14 @@ public class Util{
 			comments.add(comment);
 		}
 		return comments;
+	}
+	
+	public static int nextKeyNumber(Set<Integer> set){
+		int max = 0;
+		for(int i : set){
+			if(i>max) max = i;
+		}
+		return max+1;
 	}
 
 }

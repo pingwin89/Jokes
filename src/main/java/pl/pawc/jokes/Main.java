@@ -12,8 +12,7 @@ class Main{
 	
 	public static void main(String args[]){
 		HashMap<Integer, Joke> jokes = Transaction.loadJokesFromFile("baza");
-		//print(jokes);
-		
+
 		Comment comment = new Comment("Jim", "I like that");
 		Comment comment2 = new Comment("Adam", "LMAO");
 		ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -23,9 +22,14 @@ class Main{
 		Joke joke = new Joke("Tom", "Another sample joke");
 		joke.setComments(comments);
 		
-		jokes.put(99, joke);
+		jokes.put(Util.nextKeyNumber(jokes.keySet()), joke);
 		
 		Transaction.saveJokesToFile("baza2", jokes);
+		
+		jokes.remove(2);
+		
+		Transaction.saveJokesToFile("baza3", jokes);
+		
 		print(jokes);
 		
 	}
