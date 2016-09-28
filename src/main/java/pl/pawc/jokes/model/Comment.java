@@ -8,14 +8,23 @@ public class Comment{
 	private Date date;
 	private String text;
 
-	public Comment(String[] data){
-		this(data[0], data[1], data[2]);
-	}
-
 	public Comment(String author, String date, String text){
 		this.author = author;
-		this.date = new Date(Long.parseLong(date));
+		this.date = new Date(parseDate(date));
 		this.text = text;
+	}
+	
+	private Long parseDate(String date){
+		Long result = 0L;
+		try{
+			result = Long.parseLong(date);
+		}
+		catch(NumberFormatException e){
+			e.printStackTrace();
+		}
+		finally{
+			return result;
+		}
 	}
 
 	public String getAuthor(){
