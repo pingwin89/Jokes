@@ -4,52 +4,29 @@ import pl.pawc.jokes.model.Joke;
 import pl.pawc.jokes.model.Comment;
 import pl.pawc.jokes.database.Util;
 import pl.pawc.jokes.database.Transaction;
+import pl.pawc.jokes.ui.CommandHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 class Main{
 	
 	public static void main(String args[]){
-		HashMap<Integer, Joke> jokes = Transaction.loadJokesFromFile("baza");
-
-		Comment comment = new Comment("Jim", "I like that");
-		Comment comment2 = new Comment("Adam", "LMAO");
-		ArrayList<Comment> comments = new ArrayList<Comment>();
-		comments.add(comment);
-		comments.add(comment2);
 		
-		Joke joke = new Joke("Tom", "Another sample joke");
-		joke.setComments(comments);
+		String file = args[0];
+		CommandHandler.jokes = Transaction.loadJokesFromFile(file);
+		CommandHandler.sc  = new Scanner(System.in);
 		
-		jokes.put(Util.nextKeyNumber(jokes.keySet()), joke);
+		String line; 
 		
-		Transaction.saveJokesToFile("baza2", jokes);
-		
-		jokes.remove(2);
-		
-		Transaction.saveJokesToFile("baza3", jokes);
-		
-		print(jokes);
+		while(true){
+			System.out.printf(">");
+			line = CommandHandler.sc.nextLine();
+			if(line == null) System.exit(0);
+			CommandHandler.handle(line);
+		}		
 		
 	}
 	
-	public static void print(HashMap<Integer, Joke> jokes){
-		for(int i : jokes.keySet()){
-			Joke joke = jokes.get(i);
-			log(i+". "+joke.getAuthor()+": "+joke.getContent());
-			log("posted on "+joke.getDate().toString());
-			log("likes: "+joke.getLikes());
-				int j = 1;
-				for(Comment comment : joke.getComments()){
-					log("    "+j+". "+comment.getAuthor()+": "+comment.getText()+", "+comment.getDate().toString());
-					j++;
-				}
-			log("");
-		}
-	}
-
-	public static void log(String line){
-		System.out.println(line);
-	}
 }
