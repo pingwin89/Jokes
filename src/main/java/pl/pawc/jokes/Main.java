@@ -6,17 +6,18 @@ import pl.pawc.jokes.database.Util;
 import pl.pawc.jokes.database.Transaction;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class Main{
 	
 	public static void main(String args[]){
-		ArrayList<Joke> jokes = Transaction.getJokesFromFile("baza");
+		HashMap<Integer, Joke> jokes = Transaction.getJokesFromFile("baza");
 		print(jokes);
 	}
 	
-	public static void print(ArrayList<Joke> jokes){
-		int i = 1;
-		for(Joke joke : jokes){
+	public static void print(HashMap<Integer, Joke> jokes){
+		for(int i : jokes.keySet()){
+			Joke joke = jokes.get(i);
 			log(i+". "+joke.getAuthor()+": "+joke.getContent());
 			log("posted on "+joke.getDate().toString());
 			log("likes: "+joke.getLikes());
@@ -26,7 +27,6 @@ class Main{
 					log("    "+j+". "+comment.getAuthor()+": "+comment.getText()+", "+comment.getDate().toString());
 					j++;
 				}
-			i++;
 			log("");
 		}
 	}
