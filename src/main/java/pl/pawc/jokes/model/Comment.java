@@ -31,8 +31,8 @@ public class Comment{
 		return author;
 	}
 
-	public Long getDate(){
-		return date.getTime();
+	public Date getDate(){
+		return date;
 	}
 
 	public String getText(){

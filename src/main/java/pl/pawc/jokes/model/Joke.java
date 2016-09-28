@@ -40,7 +40,7 @@ public class Joke{
 	}
 	
 	public void setDate(String date){
-		this.date = new Date(parseDate(date)));
+		this.date = new Date(parseDate(date));
 	}
 	
 	private Long parseDate(String date){
