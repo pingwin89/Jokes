@@ -7,6 +7,12 @@ public class Comment{
 	private String author;
 	private Date date;
 	private String text;
+	
+	public Comment(String author, String text){
+		this.author = author;
+		date = new Date();
+		this.text = text;
+	}
 
 	public Comment(String author, String date, String text){
 		this.author = author;

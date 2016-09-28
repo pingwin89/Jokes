@@ -2,6 +2,7 @@ package pl.pawc.jokes.database;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -13,7 +14,32 @@ import pl.pawc.jokes.database.Util;
 
 public class Transaction{
 	
-	public static HashMap<Integer, Joke> getJokesFromFile(String path){
+	public static void saveJokesToFile(String path, HashMap<Integer, Joke> jokes){
+		FileWriter fw = null;
+		try{
+			fw = new FileWriter(path);
+			String jokesString = parseJokesToString(jokes);
+			fw.write(jokesString);
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		finally{
+			closeOutputStreams(fw);
+		}
+	}
+	
+	public static String parseJokesToString(HashMap<Integer, Joke> jokes){
+		String result = "";
+		for(int i : jokes.keySet()){
+			Joke joke = jokes.get(i);
+			result += Util.turnJokeIntoLine(joke);
+			result += "\n";
+		}
+		return result;
+	}
+	
+	public static HashMap<Integer, Joke> loadJokesFromFile(String path){
 		BufferedReader bfr = null;
 		FileReader fr = null;
 		HashMap<Integer, Joke> jokes = new HashMap<Integer, Joke>();
@@ -39,12 +65,21 @@ public class Transaction{
 			return new HashMap<Integer, Joke>();
 		}
 		finally{
-			Transaction.closeStreams(bfr);
+			Transaction.closeInputStreams(bfr);
 			return jokes;
 		}
 	}
 	
-	public static void closeStreams(BufferedReader bfr){
+	public static void closeOutputStreams(FileWriter fw){
+		try{
+			fw.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void closeInputStreams(BufferedReader bfr){
 		try{
 			bfr.close();
 		}

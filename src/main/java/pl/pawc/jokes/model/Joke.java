@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Joke{
 	
-	private String content;
 	private String author;
+	private String content;
 	private Date date;
 	private int likes;
 	private ArrayList<Comment> comments;
@@ -15,20 +15,20 @@ public class Joke{
 	public Joke(){
 	}
 
-	public Joke(String content, String author){
-		this.content = content;
+	public Joke(String author, String content){
 		this.author = author;
+		this.content = content;
 		date = new Date();
 		likes = 0;
 		comments = new ArrayList<Comment>();
 	}
-
-	public void setContent(String content){
-		this.content = content;
-	}
 	
 	public void setAuthor(String author){
 		this.author = author;
+	}
+
+	public void setContent(String content){
+		this.content = content;
 	}
 	
 	public void setDate(Date date){
@@ -67,13 +67,13 @@ public class Joke{
 	public void setComments(ArrayList<Comment> comments){
 		this.comments = comments;
 	}
-	
-	public String getContent(){
-		return content;
-	}
 
 	public String getAuthor(){
 		return author;
+	}
+	
+	public String getContent(){
+		return content;
 	}
 	
 	public int getLikes(){
