@@ -15,16 +15,18 @@ class Main{
 	public static void main(String args[]){
 		
 		String file = args[0];
-		CommandHandler.jokes = Transaction.loadJokesFromFile(file);
-		CommandHandler.sc  = new Scanner(System.in);
-		
+		HashMap<Integer, Joke> jokes = Transaction.loadJokesFromFile(file);
+		Scanner sc = new Scanner(System.in);
+
+		CommandHandler ch = new CommandHandler(sc, jokes);	
+
 		String line; 
 		
 		while(true){
 			System.out.printf(">");
-			line = CommandHandler.sc.nextLine();
+			line = ch.sc.nextLine();
 			if(line == null) System.exit(0);
-			CommandHandler.handle(line);
+			ch.handle(line);
 		}		
 		
 	}

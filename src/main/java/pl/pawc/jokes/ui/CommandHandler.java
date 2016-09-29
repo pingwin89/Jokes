@@ -11,21 +11,26 @@ import pl.pawc.jokes.database.Util;
 
 public class CommandHandler{
 	
-	public static HashMap<Integer, Joke> jokes = null;
-	public static Scanner sc = null;
+	public Scanner sc = null;
+	public HashMap<Integer, Joke> jokes = null;
 	
-	public static void handle(String command){
+	public CommandHandler(Scanner sc, HashMap<Integer, Joke> jokes){
+		this.sc = sc;
+		this.jokes = jokes;
+	}
+
+	public void handle(String command){
 		switch(command){
 			case "print" : {
-				CommandHandler.print();
+				print();
 				break;
 			}
 			case "add joke" : {
-				CommandHandler.addJoke();
+				addJoke();
 				break;
 			}
 			case "del joke" : {
-				CommandHandler.deleteJoke();
+				deleteJoke();
 				break;
 			}
 			case "recent" : {
@@ -56,17 +61,17 @@ public class CommandHandler{
 	}
 	
 	
-	public static void addJoke(){
+	public void addJoke(){
 		log("your joke: ");
-		String content = CommandHandler.read();
+		String content = read();
 		log("your name: ");
-		String author = CommandHandler.read();
+		String author = read();
 		Joke joke = new Joke(author, content);
 		jokes.put(Util.nextKeyNumber(jokes.keySet()), joke);
 		log("your joke has been submitted");
 	}
 	
-	public static void deleteJoke(){
+	public void deleteJoke(){
 		log("which number?");
 		int i = readNumber();
 		if(jokes.get(i)==null){
@@ -78,7 +83,7 @@ public class CommandHandler{
 		}
 	}
 	
-	public static void print(){
+	public void print(){
 		for(int i : jokes.keySet()){
 			Joke joke = jokes.get(i);
 			log(i+". "+joke.getAuthor()+": "+joke.getContent());
@@ -93,7 +98,7 @@ public class CommandHandler{
 		}
 	}
 	
-	public static String read(){
+	public String read(){
 		String line = sc.nextLine();
 		if(line==null){
 			log("No input. Exiting program");
@@ -102,7 +107,7 @@ public class CommandHandler{
 		return line;		
 	}
 	
-	public static int readNumber(){
+	public int readNumber(){
 		int i = 0;
 		try{
 			i = sc.nextInt();
@@ -119,7 +124,7 @@ public class CommandHandler{
 		return i;
 	}
 	
-	public static void log(String line){
+	public void log(String line){
 		System.out.println(line);
 	}
 	
