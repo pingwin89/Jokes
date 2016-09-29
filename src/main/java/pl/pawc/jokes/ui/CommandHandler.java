@@ -19,6 +19,7 @@ public class CommandHandler{
 	public HashMap<Integer, Joke> jokes = null;
 	
 	public CommandHandler(String path, Scanner sc, HashMap<Integer, Joke> jokes){
+		this.path = path;
 		this.sc = sc;
 		this.jokes = jokes;
 	}

@@ -17,7 +17,7 @@ public class Transaction{
 	public static void saveJokesToFile(String path, HashMap<Integer, Joke> jokes){
 		FileWriter fw = null;
 		try{
-			fw = new FileWriter("baza2");
+			fw = new FileWriter(path);
 			String jokesString = parseJokesToString(jokes);
 			fw.write(jokesString);
 		}
