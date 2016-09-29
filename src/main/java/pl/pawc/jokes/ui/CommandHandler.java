@@ -1,13 +1,16 @@
 package pl.pawc.jokes.ui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.Collections;
 
 import pl.pawc.jokes.model.Joke;
 import pl.pawc.jokes.model.Comment;
 import pl.pawc.jokes.database.Transaction;
 import pl.pawc.jokes.database.Util;
+import pl.pawc.jokes.sort.OrderByLikes;
 
 public class CommandHandler{
 	
@@ -34,9 +37,11 @@ public class CommandHandler{
 				break;
 			}
 			case "recent" : {
+				recent();
 				break;
 			}
 			case "oldest" : {
+				oldest();
 				break;
 			}
 			case "top" : {
@@ -82,12 +87,23 @@ public class CommandHandler{
 		log(help);
 	}
 
+	private void oldest(){
+		ArrayList<Joke> list = Util.getListFromMap(jokes);
+		Collections.sort(list, Collections.reverseOrder());
+		print(list);
+	}
+
+	private void recent(){
+		ArrayList<Joke> list = Util.getListFromMap(jokes);
+		Collections.sort(list);
+		print(list);		
+	}
+
 	private void quit(){
 		sc.close();	
 		log("quitting, bye..");
 		System.exit(0);
 	}
-	
 	
 	private void addJoke(){
 		log("your joke: ");
@@ -108,6 +124,22 @@ public class CommandHandler{
 		else{
 			jokes.remove(i);
 			log("the joke has been removed");
+		}
+	}
+
+	private void print(ArrayList<Joke> jokes){
+		int i = 1;
+		for(Joke joke : jokes){
+			log(i+". "+joke.getAuthor()+": "+joke.getContent());
+			log("posted on "+joke.getDate().toString());
+			log("likes: "+joke.getLikes());
+				int j = 1;
+				for(Comment comment : joke.getComments()){
+					log("    "+j+". "+comment.getAuthor()+": "+comment.getText()+", "+comment.getDate().toString());
+					j++;
+				}
+			i++;				
+			log("");
 		}
 	}
 	

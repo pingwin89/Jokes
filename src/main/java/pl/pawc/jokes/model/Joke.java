@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Joke{
+public class Joke implements Comparable<Joke>{
 	
 	private String author;
 	private String content;
@@ -86,6 +86,11 @@ public class Joke{
 
 	public ArrayList<Comment> getComments(){
 		return comments;
+	}
+
+	@Override
+	public int compareTo(Joke joke){
+		return date.getTime() < joke.getDate().getTime() ? 1 : (date.getTime() > joke.getDate().getTime() ? -1 : 0);
 	}
 
 }

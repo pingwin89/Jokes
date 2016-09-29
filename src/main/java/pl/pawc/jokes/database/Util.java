@@ -91,4 +91,12 @@ public class Util{
 		return max+1;
 	}
 
+	public static ArrayList<Joke> getListFromMap(HashMap<Integer, Joke> jokes){
+		ArrayList<Joke> result = new ArrayList<Joke>();
+		for(int i : jokes.keySet()){
+			result.add(jokes.get(i));
+		}
+		return result;
+	}
+
 }
