@@ -14,10 +14,11 @@ import pl.pawc.jokes.sort.OrderByLikes;
 
 public class CommandHandler{
 	
+	private String path;
 	public Scanner sc = null;
 	public HashMap<Integer, Joke> jokes = null;
 	
-	public CommandHandler(Scanner sc, HashMap<Integer, Joke> jokes){
+	public CommandHandler(String path, Scanner sc, HashMap<Integer, Joke> jokes){
 		this.sc = sc;
 		this.jokes = jokes;
 	}
@@ -45,15 +46,18 @@ public class CommandHandler{
 				break;
 			}
 			case "top" : {
+				top();
 				break;
 			}
 			case "worst" : {
+				worst();
 				break;
 			}
 			case "like" : {
 				break;
 			}
 			case "save" : {
+				save();
 				break;
 			}
 			case "comment" : {
@@ -68,6 +72,11 @@ public class CommandHandler{
 				break;
 			}
 		}
+	}
+
+	private void save(){
+		Transaction.saveJokesToFile(path, jokes);
+		log("jokes saved");
 	}
 
 	private void help(){
@@ -85,6 +94,18 @@ public class CommandHandler{
 		"quit \n" +
 		"help";
 		log(help);
+	}
+
+	private void top(){
+		ArrayList<Joke> list = Util.getListFromMap(jokes);
+		Collections.sort(list, new OrderByLikes());
+		print(list);
+	}
+
+	private void worst(){
+		ArrayList<Joke> list = Util.getListFromMap(jokes);
+		Collections.sort(list, Collections.reverseOrder(new OrderByLikes()));
+		print(list);	
 	}
 
 	private void oldest(){

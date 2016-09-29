@@ -18,7 +18,7 @@ class Main{
 		HashMap<Integer, Joke> jokes = Transaction.loadJokesFromFile(file);
 		Scanner sc = new Scanner(System.in);
 
-		CommandHandler ch = new CommandHandler(sc, jokes);	
+		CommandHandler ch = new CommandHandler(file, sc, jokes);	
 
 		String line; 
 		
