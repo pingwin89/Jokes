@@ -69,7 +69,12 @@ public class Util{
 			result += data[i];
 			result += ";";
 		}
-		return result.substring(0, result.length()-1);
+		if("".equals(result)){
+			return result;
+		}
+		else{
+			return result.substring(0, result.length()-1);
+		}
 	}
 	
 	public static ArrayList<Comment> getCommentsListFrom(String line){
