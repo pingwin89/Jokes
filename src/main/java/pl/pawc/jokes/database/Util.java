@@ -43,8 +43,14 @@ public class Util{
 		String likes = data[3];
 		
 		String commentsString = getCommentsStringFrom(data);
-		ArrayList<Comment> comments = getCommentsListFrom(commentsString);
+		ArrayList<Comment> comments = null;
 		
+		if("".equals(commentsString) || commentsString == null){
+			comments = new ArrayList<Comment>();
+		}
+		else{
+			comments = getCommentsListFrom(commentsString);
+		}
 		Joke joke = new Joke();
 		
 		joke.setAuthor(author);
