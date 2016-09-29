@@ -54,6 +54,7 @@ public class CommandHandler{
 				break;
 			}
 			case "like" : {
+				like();
 				break;
 			}
 			case "save" : {
@@ -72,6 +73,17 @@ public class CommandHandler{
 				break;
 			}
 		}
+	}
+
+	private void like(){
+		log("joke's number: ");
+		int i = readNumber();
+		Joke joke = jokes.get(i);
+		if(joke==null){
+			log("No such joke");
+			return;
+		}
+		joke.addLike();
 	}
 
 	private void save(){

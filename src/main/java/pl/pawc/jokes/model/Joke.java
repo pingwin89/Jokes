@@ -55,6 +55,10 @@ public class Joke implements Comparable<Joke>{
 			return result;
 		}
 	}
+
+	public void addLike(){
+		likes++;
+	}
 	
 	public void setLikes(int likes){
 		this.likes = likes;
