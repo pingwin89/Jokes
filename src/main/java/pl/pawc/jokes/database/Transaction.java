@@ -17,7 +17,7 @@ public class Transaction{
 	public static void saveJokesToFile(String path, HashMap<Integer, Joke> jokes){
 		FileWriter fw = null;
 		try{
-			fw = new FileWriter(path);
+			fw = new FileWriter("baza2");
 			String jokesString = parseJokesToString(jokes);
 			fw.write(jokesString);
 		}
@@ -72,7 +72,7 @@ public class Transaction{
 	
 	public static void closeOutputStreams(FileWriter fw){
 		try{
-			fw.close();
+			if(fw != null) fw.close();
 		}
 		catch(IOException e){
 			e.printStackTrace();

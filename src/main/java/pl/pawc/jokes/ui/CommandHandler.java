@@ -62,6 +62,7 @@ public class CommandHandler{
 				break;
 			}
 			case "comment" : {
+				comment();
 				break;
 			}
 			case "help" : {
@@ -75,11 +76,30 @@ public class CommandHandler{
 		}
 	}
 
+	private void comment(){
+		log("your comment: ");
+		String text = read();
+		log("your name: ");
+		String author = read();
+		Comment comment = new Comment(author, text);
+
+		log("which joke?");
+		int i = readNumber();
+		Joke joke = jokes.get(i);
+		if(joke == null){
+			log("No such joke");
+			return;
+		}
+
+		joke.addComment(comment);
+		log("comment added");
+	}
+
 	private void like(){
 		log("joke's number: ");
 		int i = readNumber();
 		Joke joke = jokes.get(i);
-		if(joke==null){
+		if(joke == null){
 			log("No such joke");
 			return;
 		}
