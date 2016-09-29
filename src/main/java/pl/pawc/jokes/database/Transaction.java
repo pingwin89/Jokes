@@ -81,7 +81,7 @@ public class Transaction{
 	
 	public static void closeInputStreams(BufferedReader bfr){
 		try{
-			bfr.close();
+			if(bfr != null) bfr.close();
 		}
 		catch(IOException e){
 			e.printStackTrace();
