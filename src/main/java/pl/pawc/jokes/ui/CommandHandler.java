@@ -51,17 +51,45 @@ public class CommandHandler{
 			case "save" : {
 				break;
 			}
+			case "comment" : {
+				break;
+			}
 			case "help" : {
+				help();
 				break;
 			}
 			case "quit" : {
+				quit();
 				break;
 			}
 		}
 	}
+
+	private void help(){
+		String help =
+		"print \n" +
+		"add joke \n" +
+		"del joke \n" +
+		"recent \n" +
+		"oldest \n" +
+		"top \n" +
+		"worst \n" +
+		"like \n" +
+		"comment \n" +
+		"save \n" +
+		"quit \n" +
+		"help";
+		log(help);
+	}
+
+	private void quit(){
+		sc.close();	
+		log("quitting, bye..");
+		System.exit(0);
+	}
 	
 	
-	public void addJoke(){
+	private void addJoke(){
 		log("your joke: ");
 		String content = read();
 		log("your name: ");
@@ -71,7 +99,7 @@ public class CommandHandler{
 		log("your joke has been submitted");
 	}
 	
-	public void deleteJoke(){
+	private void deleteJoke(){
 		log("which number?");
 		int i = readNumber();
 		if(jokes.get(i)==null){
@@ -83,7 +111,7 @@ public class CommandHandler{
 		}
 	}
 	
-	public void print(){
+	private void print(){
 		for(int i : jokes.keySet()){
 			Joke joke = jokes.get(i);
 			log(i+". "+joke.getAuthor()+": "+joke.getContent());
@@ -98,7 +126,7 @@ public class CommandHandler{
 		}
 	}
 	
-	public String read(){
+	private String read(){
 		String line = sc.nextLine();
 		if(line==null){
 			log("No input. Exiting program");
@@ -107,7 +135,7 @@ public class CommandHandler{
 		return line;		
 	}
 	
-	public int readNumber(){
+	private int readNumber(){
 		int i = 0;
 		try{
 			i = sc.nextInt();
@@ -124,7 +152,7 @@ public class CommandHandler{
 		return i;
 	}
 	
-	public void log(String line){
+	private void log(String line){
 		System.out.println(line);
 	}
 	
